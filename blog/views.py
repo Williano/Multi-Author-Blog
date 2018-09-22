@@ -1,8 +1,9 @@
-from django.shortcuts import render
+# Third party  imports.
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, 
     UserPassesTestMixin
 )
+from django.shortcuts import render
 from django.views.generic import (
         ListView,
         DetailView,
@@ -10,11 +11,16 @@ from django.views.generic import (
         UpdateView,
         DeleteView,
 )
+
+# Local application import
 from .models import Post
 
 
-# View for listing all posts.
 def home(request):
+    """
+       Homepage view which lists all the posts in 
+       the database.
+    """
     context = {
         'posts': Post.objects.all()
     }
@@ -22,7 +28,8 @@ def home(request):
 
 
 class PostListView(ListView):
-    """View for listing all posts.
+    """
+       View for listing all posts.
     """
     model = Post
     template_name = 'blog/home.html' 
@@ -31,13 +38,15 @@ class PostListView(ListView):
 
 
 class PostDetailView(DetailView):
-    """View for a post's details
+    """
+        View for a post's details
     """
     model = Post
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
-    """View for creating a new post.
+    """
+       View for creating a new post.
     """
     model = Post
     fields = ['title', 'content']
@@ -48,18 +57,24 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    """View for Updating a post.
+    """
+        View for Updating a post.
     """
     model = Post
     fields = ['title', 'content']
 
     def form_valid(self, form):
+        """
+            Assigns the post to the current author.
+        """
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-    # UserPassesTextMixin checks if it is the user before allowing
-    # him/her to update a post.
     def test_func(self):
+        """
+            UserPassesTextMixin checks if it is the user before allowing
+            him/her to update a post.
+        """
         post = self.get_object()
         if self.request.user == post.author:
             return True
@@ -67,22 +82,27 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    """View for deleting a post.
+    """
+        View for deleting a post.
     """
     model = Post
     success_url = '/'
 
-    # UserPassesTextMixin checks if it is the user before allowing
-    # him/her to delete post.
     def test_func(self):
+        """
+            UserPassesTextMixin checks if it is the user before allowing
+            him/her to delete post.
+        """
         post = self.get_object()
         if self.request.user == post.author:
             return True
         return False
 
 
-# View for about page.
 def about(request):
+    """
+        View for about page.
+    """
     context = {'title': 'About'}
     template_name = 'blog/about.html'
     return render(request, template_name, context)

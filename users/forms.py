@@ -1,11 +1,16 @@
+# Third party imports
 from django import forms
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+# Local application import
 from .models import Profile
 
 
-# Creates User registration form for signing up.
 class UserRegisterForm(UserCreationForm):
+    """
+        Creates User registration form for signing up.
+    """
     email = forms.EmailField()
 
     class Meta:
@@ -13,8 +18,10 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 
-# Creates form for user to upadate their account.
 class UserUpdateForm(forms.ModelForm):
+    """
+        Creates form for user to upadate their account.
+    """
     email = forms.EmailField()
 
     class Meta:
@@ -22,8 +29,10 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['username', 'email']
 
 
-# Creates form for user to update their Profile.
 class ProfileUpdateForm(forms.ModelForm):
+    """
+       Creates form for user to update their Profile.
+    """
     class Meta:
         model = Profile
         fields = ['image']

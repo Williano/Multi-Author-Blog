@@ -4,8 +4,20 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 
-# View for user registration.
 def register(request):
+    """
+        View for user registration.
+
+        Checks if a user request is a POST or GET.
+        If it is a POST request, it creates an instance
+        of the user register form and pass in the user's
+        POST request. If it is a GET request, it just 
+        displays the user register form for the user.
+
+        It then checks if the form is valid. If it is valid,
+        it saves the data in the database and sends the user 
+        to the login page and diplays a success message. 
+    """
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
