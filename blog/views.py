@@ -1,15 +1,15 @@
 # Third party  imports.
 from django.contrib.auth.mixins import (
-    LoginRequiredMixin, 
+    LoginRequiredMixin,
     UserPassesTestMixin
 )
 from django.shortcuts import render
 from django.views.generic import (
-        ListView,
-        DetailView,
-        CreateView,
-        UpdateView,
-        DeleteView,
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
 )
 
 # Local application import
@@ -18,7 +18,7 @@ from .models import Post
 
 def home(request):
     """
-       Homepage view which lists all the posts in 
+       Homepage view which lists all the posts in
        the database.
     """
     context = {
@@ -32,7 +32,7 @@ class PostListView(ListView):
        View for listing all posts.
     """
     model = Post
-    template_name = 'blog/home.html' 
+    template_name = 'blog/home.html'
     context_object_name = 'posts'
     ordering = ['-date_posted']
 
