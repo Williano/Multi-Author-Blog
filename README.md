@@ -1,4 +1,5 @@
-# Invoice Management System
+# Multi Author Blog
+A multi author blog built with Django 2.0. [I followed a tutorial by Corey Schafer] (https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p)
 
 ## Getting Started
 This section describes how to set up an environmet to run and test the project.
