@@ -137,3 +137,15 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Redirects User to home page after successful login.
 LOGIN_REDIRECT_URL = 'blog:home'
 LOGIN_URL = 'login'
+
+# Email configuration for development.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Email configuration for production.
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = ''
+# EMAIL_PORT = ''
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+# EMAIL_PASSWORD =  os.environ.get('PASSWORD')
+
