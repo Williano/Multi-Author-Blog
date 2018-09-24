@@ -21,7 +21,7 @@ class Profile(models.Model):
 
     def save(self, **kwargs):
         """
-            Overides the default save method to resize the user profile image.
+            Overrides the default save method to resize the user profile image.
 
             Opens the uploaded image path.
             
