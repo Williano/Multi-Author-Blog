@@ -5,10 +5,12 @@ A multi author blog built with Django 2.0. Multiple users can sign up and write 
 ## Getting Started
 This section describes how to set up an environmet to run and test the project.
 
+
 ### Prerequisites
 * You have a working installation of Python 3.6.*
 * You can install software on your system.
 * You can create and activate Python virtual environments.
+
 
 ### Setup
 ## Installation on Linux
